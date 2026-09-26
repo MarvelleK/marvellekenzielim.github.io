@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marvelle Kenzie Lim — Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E0C; --bg-2:#0F1512; --card:#121814; --card-2:#161D18;
+    --line:#232B26; --ink:#F2F4F1; --ink-soft:#98A69D; --ink-dim:#66756C;
+    --green:#3ED67D; --green-deep:#1B5E3B; --green-glow:rgba(62,214,125,.18);
+    box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+  @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+  body{
+    background:
+      radial-gradient(900px 500px at 85% -10%, var(--green-glow), transparent 60%),
+      radial-gradient(700px 400px at 0% 40%, rgba(62,214,125,.08), transparent 55%),
+      var(--bg);
+    color:var(--ink); font-family:'Inter',sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Manrope',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+  @keyframes riseIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .rise{animation:riseIn .7s cubic-bezier(.2,.7,.3,1) both;}
+  .rise-1{animation-delay:.05s;} .rise-2{animation-delay:.16s;} .rise-3{animation-delay:.27s;} .rise-4{animation-delay:.38s;}
+
+  header{position:sticky;top:0;top:env(safe-area-inset-top,0px);z-index:20;
+    background:color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.05rem;}
+  .brand .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--green),var(--green-deep));display:flex;align-items:center;justify-content:center;font-size:.78rem;color:#06120A;font-weight:800;}
+  nav{display:flex;gap:30px;font-size:.88rem;color:var(--ink-soft);}
+  nav a:hover{color:var(--ink);}
+  @media (max-width:680px){nav{display:none;}}
+  .btn{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.88rem;padding:11px 20px;border-radius:100px;transition:transform .18s ease, box-shadow .18s ease;}
+  .btn-primary{background:linear-gradient(135deg,var(--green),#2AB868);color:#06180E;box-shadow:0 8px 24px -8px rgba(62,214,125,.5);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(62,214,125,.65);}
+  .btn-ghost{color:var(--ink-soft);}
+  .btn-ghost:hover{color:var(--ink);}
+
+  .hero{padding:88px 0 70px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;align-items:start;}
+  @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;color:var(--ink-soft);border:1px solid var(--line);padding:6px 13px;border-radius:100px;margin-bottom:24px;}
+  .kicker .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px var(--green-glow);}
+  h1{font-weight:800;font-size:clamp(2.4rem,5vw,3.35rem);line-height:1.08;letter-spacing:-.02em;color:var(--ink);}
+  h1 span{color:var(--green);}
+  .lede{margin-top:20px;max-width:46ch;color:var(--ink-soft);font-size:1.03rem;}
+  .hero-actions{display:flex;align-items:center;gap:22px;margin-top:30px;flex-wrap:wrap;}
+  .trust{margin-top:38px;display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--ink-soft);}
+  .trust .stars{color:var(--green);letter-spacing:1px;}
+
+  .stat-stack{display:grid;gap:16px;}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;}
+  .panel-big-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:2.3rem;color:var(--green);}
+  .panel-label{color:var(--ink-soft);font-size:.86rem;margin-top:4px;}
+  .blob-panel{background:linear-gradient(160deg,#0E2A1B,#0A130E);border:1px solid var(--line);border-radius:16px;padding:20px;min-height:150px;display:flex;align-items:center;justify-content:center;}
+  .two-col-panels{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media (max-width:520px){.two-col-panels{grid-template-columns:1fr;}}
+
+  .strip{padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;}
+  .strip-track{display:flex;gap:44px;align-items:center;color:var(--ink-dim);font-weight:600;font-size:.92rem;white-space:nowrap;}
+  .strip-track span{opacity:.85;}
+
+  section{padding:76px 0;}
+  .eyebrow{color:var(--ink-dim);font-size:.82rem;margin-bottom:12px;}
+  h2{font-weight:800;font-size:clamp(1.6rem,3.4vw,2.15rem);letter-spacing:-.01em;max-width:16ch;}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px;}
+  .section-sub{color:var(--ink-soft);font-size:.95rem;max-width:38ch;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;}
+  @media (max-width:640px){.stat-row{grid-template-columns:1fr;}}
+  .stat-num{font-family:'Manrope',sans-serif;font-weight:800;font-size:clamp(2.4rem,5vw,3.1rem);color:var(--green);letter-spacing:-.02em;}
+  .stat-caption{color:var(--ink-soft);font-size:.92rem;margin-top:6px;}
+
+  .feat-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1.05fr;gap:18px;}
+  @media (max-width:900px){.feat-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.feat-grid{grid-template-columns:1fr;}}
+  .feat-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .2s ease,border-color .2s ease;}
+  .feat-card:hover{transform:translateY(-4px);border-color:var(--green-deep);}
+  .icon-circle{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--green),#1E8A52);display:flex;align-items:center;justify-content:center;color:#06180E;font-weight:800;margin-bottom:18px;font-size:1rem;}
+  .feat-card h3{font-size:1.02rem;margin-bottom:8px;}
+  .feat-card p{color:var(--ink-soft);font-size:.88rem;}
+  .feat-cta{grid-row:span 1;background:linear-gradient(165deg,#123222,#0B1811);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;justify-content:flex-end;min-height:100%;}
+  .feat-cta .blob{height:90px;border-radius:12px;background:radial-gradient(circle at 30% 30%, rgba(62,214,125,.55), transparent 60%), radial-gradient(circle at 70% 70%, rgba(30,138,82,.5), transparent 60%);margin-bottom:20px;}
+  .feat-cta h3{font-size:1.12rem;margin-bottom:8px;}
+  .feat-cta p{color:var(--ink-soft);font-size:.87rem;margin-bottom:16px;}
+
+  .proj-grid{display:grid;gap:20px;}
+  .proj-card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid;grid-template-columns:1fr 1.4fr;transition:border-color .2s ease;}
+  .proj-card:hover{border-color:var(--green-deep);}
+  @media (max-width:760px){.proj-card{grid-template-columns:1fr;}}
+  .proj-visual{position:relative;min-height:180px;background:linear-gradient(160deg,#0E2A1B,#0A130E);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .proj-visual svg{width:82%;height:82%;}
+  .proj-body{padding:26px 28px;}
+  .proj-tag{color:var(--green);font-size:.78rem;font-weight:700;margin-bottom:8px;}
+  .proj-body h3{font-size:1.18rem;margin-bottom:8px;}
+  .proj-body p{color:var(--ink-soft);font-size:.9rem;margin-bottom:14px;max-width:58ch;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{font-size:.74rem;color:var(--ink-soft);border:1px solid var(--line);padding:4px 10px;border-radius:100px;}
+
+  .tl{display:grid;gap:14px;}
+  .tl-item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 22px;display:flex;gap:20px;align-items:baseline;flex-wrap:wrap;}
+  .tl-date{color:var(--green);font-size:.82rem;font-weight:700;width:130px;flex-shrink:0;}
+  .tl-role{font-weight:700;font-size:.98rem;}
+  .tl-org{color:var(--ink-soft);font-size:.86rem;}
+
+  footer{padding:80px 0 60px;text-align:center;border-top:1px solid var(--line);}
+  footer h2{max-width:none;margin:0 auto 14px;}
+  footer p{color:var(--ink-soft);max-width:44ch;margin:0 auto 30px;}
+  .foot-links{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:34px;font-size:.9rem;color:var(--ink-soft);}
+  .foot-links a:hover{color:var(--green);}
+  .foot-note{margin-top:46px;color:var(--ink-dim);font-size:.78rem;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="mark">MK</span>Marvelle Kenzie Lim</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary" href="mailto:marvelle.lim@binus.ac.id">Get in Touch</a>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="kicker rise rise-1"><span class="dot"></span>Open to research collaborations &amp; internships</div>
+        <h1 class="rise rise-2">I Build Data Systems With <span>Vision and Precision</span></h1>
+        <p class="lede rise rise-3">Computer Science student at BINUS University focused on Data Science, Machine Learning, and Data Analytics — turning messy real-world data into insight that holds up.</p>
+        <div class="hero-actions rise rise-4">
+          <a class="btn btn-primary" href="#projects">View Projects →</a>
+          <a class="btn btn-ghost" href="#contact">Contact me →</a>
+        </div>
+        <div class="trust rise rise-4">
+          <span class="stars">★★★★★</span>
+          BINUS University · Computer Science · Jakarta, Indonesia
+        </div>
+      </div>
+
+      <div class="stat-stack rise rise-3">
+        <div class="panel">
+          <div class="panel-big-num">3</div>
+          <div class="panel-label">Data-driven projects shipped — ML, social analytics, big data</div>
+        </div>
+        <div class="two-col-panels">
+          <div class="blob-panel">
+            <svg viewBox="0 0 120 100" width="70%">
+              <polyline points="5,80 25,55 45,65 65,25 85,40 110,10" fill="none" stroke="#3ED67D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="5" cy="80" r="4" fill="#3ED67D"/><circle cx="45" cy="65" r="4" fill="#3ED67D"/>
+              <circle cx="65" cy="25" r="4" fill="#3ED67D"/><circle cx="110" cy="10" r="4" fill="#3ED67D"/>
+            </svg>
+          </div>
+          <div class="panel" style="display:flex;flex-direction:column;justify-content:center;">
+            <div class="panel-big-num" style="font-size:1.9rem;">2</div>
+            <div class="panel-label">Languages — English (IELTS), Mandarin (HSK 3)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-track">
+      <span>Python</span><span>SQL</span><span>Apache Spark</span><span>Hadoop / HDFS</span><span>Scikit-learn</span><span>XGBoost</span><span>Matplotlib / Seaborn</span><span>OpenCV</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <section id="about">
+    <div class="stat-row">
+      <div><div class="stat-num">3</div><div class="stat-caption">Projects — from computer vision to big-data pipelines</div></div>
+      <div><div class="stat-num">5</div><div class="stat-caption">ML models benchmarked in a single study (5-fold CV)</div></div>
+      <div><div class="stat-num">2026</div><div class="stat-caption">Currently 2nd year, open to internships</div></div>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Technical toolkit</div>
+        <h2>Where I bring the most value</h2>
+      </div>
+      <p class="section-sub">From feature engineering and model evaluation to distributed processing — I work end-to-end, from raw data to deployable insight.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="icon-circle">ML</div>
+        <h3>Machine Learning</h3>
+        <p>Feature engineering, cross-validation, SMOTE, and model comparison across Scikit-learn and XGBoost.</p>
+      </div>
+      <div class="feat-card">
+        <div class="icon-circle">CV</div>
+        <h3>Computer Vision</h3>
+        <p>Hybrid feature extraction (HOG, LBP, ResNet50) for image-based classification tasks.</p>
+      </div>
+      <div class="feat-card">
+        <div class="icon-circle">BD</div>
+        <h3>Big Data Engineering</h3>
+        <p>Distributed processing with Apache Spark over Hadoop HDFS for large-scale datasets.</p>
+      </div>
+      <div class="feat-cta">
+        <div class="blob"></div>
+        <h3>From Signal to Insight</h3>
+        <p>I care about turning messy, real-world data into insight that's clear and defensible.</p>
+        <a class="btn btn-primary" style="width:fit-content;" href="#projects">See how →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Selected work</div>
+        <h2>Projects I've built</h2>
+      </div>
+      <p class="section-sub">Three projects spanning computer vision, social analytics, and distributed data engineering.</p>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-visual">
+          <svg viewBox="0 0 200 160">
+            <rect x="20" y="90" width="24" height="50" rx="4" fill="#1E8A52"/>
+            <rect x="55" y="60" width="24" height="80" rx="4" fill="#3ED67D"/>
+            <rect x="90" y="100" width="24" height="40" rx="4" fill="#1E8A52"/>
+            <rect x="125" y="35" width="24" height="105" rx="4" fill="#3ED67D"/>
+            <rect x="160" y="75" width="24" height="65" rx="4" fill="#1E8A52"/>
+          </svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">Computer Vision / Machine Learning</div>
+          <h3>Health Condition Prediction from Hand Images</h3>
+          <p>Hybrid feature extraction (HOG, LBP, ResNet50) with SMOTE balancing, benchmarked across 5 algorithms via 5-fold cross-validation. Random Forest came out on top.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">Scikit-learn</span><span class="chip">XGBoost</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-visual">
+          <svg viewBox="0 0 200 160">
+            <circle cx="60" cy="110" r="10" fill="#3ED67D"/><circle cx="100" cy="70" r="14" fill="#1E8A52"/>
+            <circle cx="140" cy="100" r="9" fill="#3ED67D"/><circle cx="150" cy="50" r="7" fill="#3ED67D"/>
+            <circle cx="75" cy="55" r="6" fill="#1E8A52"/>
+            <line x1="60" y1="110" x2="100" y2="70" stroke="#3ED67D" stroke-width="2"/>
+            <line x1="100" y1="70" x2="140" y2="100" stroke="#3ED67D" stroke-width="2"/>
+            <line x1="100" y1="70" x2="150" y2="50" stroke="#3ED67D" stroke-width="2"/>
+            <line x1="100" y1="70" x2="75" y2="55" stroke="#3ED67D" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">Social Data Analytics</div>
+          <h3>Instagram Usage &amp; User Wellbeing</h3>
+          <p>Cleaned and segmented public social-data subsets, then compared usage patterns against wellbeing indicators. Higher usage duration correlated with lower wellbeing scores.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Seaborn</span></div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-visual">
+          <svg viewBox="0 0 200 160">
+            <rect x="15" y="70" width="34" height="26" rx="5" fill="#1E8A52"/>
+            <rect x="83" y="70" width="34" height="26" rx="5" fill="#3ED67D"/>
+            <rect x="151" y="70" width="34" height="26" rx="5" fill="#1E8A52"/>
+            <line x1="49" y1="83" x2="83" y2="83" stroke="#3ED67D" stroke-width="2"/>
+            <line x1="117" y1="83" x2="151" y2="83" stroke="#3ED67D" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tag">Big Data / Data Engineering</div>
+          <h3>Brazilian E-Commerce — Big Data Pipeline</h3>
+          <p>Built a pipeline from data collection through HDFS storage, Spark processing, and SQL-driven aggregation to surface purchasing trends and customer segments at scale.</p>
+          <div class="chips"><span class="chip">Hadoop (HDFS)</span><span class="chip">Apache Spark</span><span class="chip">SQL</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Professional log</div>
+        <h2>Experience &amp; education</h2>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-date">09/2024 – Present</div><div><div class="tl-role">Bachelor of Computer Science</div><div class="tl-org">BINUS University — Tangerang, Indonesia</div></div></div>
+      <div class="tl-item"><div class="tl-date">07/2024</div><div><div class="tl-role">Cashier</div><div class="tl-org">Pekan Raya Jakarta (Jakarta Fair) — high-volume transactions &amp; customer service</div></div></div>
+      <div class="tl-item"><div class="tl-date">10/2023 – 11/2023</div><div><div class="tl-role">Volunteer</div><div class="tl-org">Yakobus Cup — event organization &amp; logistics</div></div></div>
+      <div class="tl-item"><div class="tl-date">07/2021 – 06/2024</div><div><div class="tl-role">Science Major (IPA)</div><div class="tl-org">SMA Santo Yakobus — Jakarta, Indonesia</div></div></div>
+    </div>
+  </section>
+</div>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center;">Contact</div>
+    <h2>Let's analyze something new.</h2>
+    <p>Open to research collaborations, internships, and data-driven projects. Send a note — I respond fast.</p>
+    <a class="btn btn-primary" href="mailto:marvelle.lim@binus.ac.id">marvelle.lim@binus.ac.id →</a>
+    <div class="foot-links">
+      <a href="https://linkedin.com/in/marvellekenzielim" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/marvellekenzielim" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:marvelle.lim@binus.ac.id">Email</a>
+    </div>
+    <div class="foot-note">© 2026 Marvelle Kenzie Lim · Jakarta, Indonesia</div>
+  </div>
+</footer>
+
+</body>
+</html>
